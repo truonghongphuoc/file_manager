@@ -10,7 +10,10 @@ Clone the source and run docker build
 ```
 # docker build -t <docker_tag> .
 ```
-
+Or build the container directly from github
+```commandline
+# docker build -t <docker_tag> https://github.com/truonghongphuoc/file_manager.git
+```
 Run container:
 ```commandline
 # docker run -d -p 5000:5000 <docker_images>
