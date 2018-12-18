@@ -118,4 +118,4 @@ api.add_resource(Home, '/')
 api.add_resource(Files, '/files')
 api.add_resource(File, '/file/<string:filename>')
 
-app.run(port=5000)
+app.run(host='0.0.0.0', port=5000)
