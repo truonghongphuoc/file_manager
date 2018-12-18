@@ -1,0 +1,61 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<h1>Welcome to File Manager</h1>
+<br>
+<div class="add-file">
+  <h3>Upload a new file</h3>
+  <form id= "upload-form" method=post action="{{ url_for('files') }}" enctype=multipart/form-data>
+    <input type=file name=file>
+    <input type=submit value=Upload>
+</form>
+<br>
+</div>
+<div class="entries">
+  <br>
+  <h2>Current files:</h2>
+  <div class="datagrid">
+    <table>
+      <thead>
+        <tr>
+          <th width="600px"><strong>Current files</strong></th>
+          <th><strong>Actions</strong></th>
+        </tr>
+      </thead>
+      {% for file in current_files %}
+        <tr>
+          <td width="600px">{{ file.name }}</td>
+          <td>
+            <form id="get-detail" action="{{ url_for('file', filename = file.name) }}" method=get>
+              <input type="submit" value="Detail">
+            </form>
+            <form id="delete-form" action="{{ url_for('file', filename = file.name) }}?__METHOD_OVERRIDE__=DELETE" method=post>
+              <input type="submit" value="Delete">
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<div class="entries">
+  <br>
+  <h2>Deleted files:</h2>
+  <div class="datagrid">
+    <table>
+      <thead>
+        <tr>
+          <th width="200px"><strong>Deleted files</strong></th>
+        </tr>
+      </thead>
+      {% for file in deleted_files %}
+        <tr>
+          <td width="200px">{{ file.name }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}
